@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { registerUser } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
@@ -20,14 +19,27 @@ export default function Signup() {
     setIsSubmitting(true);
     setMessage(null);
 
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("email", email);
-    formData.append("password", password);
-    formData.append("role", role);
-
     try {
-      const result = await registerUser(formData);
+      const response = await fetch("/api/users/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+          role,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setMessage({ type: "error", text: result.error || "Registration failed" });
+        setIsSubmitting(false);
+        return;
+      }
 
       if (result?.error) {
         setMessage({ type: "error", text: result.error });
@@ -39,7 +51,8 @@ export default function Signup() {
           router.push("/Login");
         }, 1500);
       }
-    } catch {
+    } catch (error) {
+      console.error("Signup error:", error);
       setMessage({ type: "error", text: "Something went wrong" });
       setIsSubmitting(false);
     }

@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { loginUser } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
@@ -18,12 +17,25 @@ export default function Login() {
     setIsSubmitting(true);
     setError("");
 
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("password", password);
-
     try {
-      const result = await loginUser(formData);
+      const response = await fetch("/api/users/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        setError(result.error || "Login failed");
+        setIsSubmitting(false);
+        return;
+      }
 
       if (result?.error) {
         setError(result.error);
@@ -39,7 +51,8 @@ export default function Login() {
           router.push("/User");
         }
       }
-    } catch {
+    } catch (error) {
+      console.error("Login error:", error);
       setError("An unexpected error occurred.");
       setIsSubmitting(false);
     }
