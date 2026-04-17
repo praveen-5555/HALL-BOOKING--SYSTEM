@@ -1,6 +1,6 @@
 "use server";
 
-
+import { readDb, writeDb } from "./db";
 
 // A server action to append a new user to db.json
 export async function registerUser(formData: FormData) {
@@ -14,37 +14,26 @@ export async function registerUser(formData: FormData) {
   }
 
   try {
-    // Check if user already exists
-    const usersRes = await fetch(`/api/users?email=${encodeURIComponent(email)}`, { cache: 'no-store' });
-    const users = await usersRes.json();
-    
-    if (users && users.length > 0) {
+    const db = await readDb();
+    const users = db.users || [];
+
+    const existingUser = users.find((user: any) => user.email === email);
+    if (existingUser) {
       return { error: "User already exists with this email" };
     }
 
-    // Create new user
     const newUser = {
+      id: String(Date.now()),
       name,
       email,
       password, // In a real application, you should hash the password!
-      role: role
+      role: role,
     };
 
-    // Save using Next.js API route
-    const createRes = await fetch("/api/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(newUser)
-    });
+    db.users = [...users, newUser];
+    await writeDb(db);
 
-    if (!createRes.ok) {
-      throw new Error("Failed to create user in json-server");
-    }
-
-    const savedUser = await createRes.json();
-    const { password: _password, ...userWithoutPassword } = savedUser;
+    const { password: _password, ...userWithoutPassword } = newUser;
     return { success: true, user: userWithoutPassword };
   } catch (error) {
     console.error("Error writing to database", error);
@@ -61,10 +50,11 @@ export async function loginUser(formData: FormData) {
   }
 
   try {
-    const usersRes = await fetch(`/api/users?email=${encodeURIComponent(email)}`, { cache: 'no-store' });
-    const users = await usersRes.json();
+    const db = await readDb();
+    const users = db.users || [];
+    const filteredUsers = users.filter((user: any) => user.email === email);
 
-    if (!users || users.length === 0) {
+    if (!filteredUsers || filteredUsers.length === 0) {
       return { error: "Invalid email or password" };
     }
 
