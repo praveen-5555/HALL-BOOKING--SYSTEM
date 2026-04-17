@@ -1,0 +1,426 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Admin User",
+      "email": "admin@example.com",
+      "password": "123",
+      "role": "admin"
+    },
+    {
+      "id": "2",
+      "name": "Praveen",
+      "email": "praveen@gmail.com",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "XHjre9sWEEE",
+      "name": "praveen",
+      "email": "praveen12@gmail.com",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "YLMpvZzzFYE",
+      "name": "praveen",
+      "email": "cv@gmail.com",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "aq8sbW-DB4E",
+      "name": "user",
+      "email": "user1@gamil.com",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "JT16FX-lMgQ",
+      "name": "praveen",
+      "email": "user@gmail.com",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "Wg5W1vrWgYY",
+      "name": "praveen",
+      "email": "praveen2@gmail.com",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "U3PAVJjiox4",
+      "name": "praveen",
+      "email": "praveen1234@gmail.com",
+      "password": "123",
+      "role": "admin"
+    },
+    {
+      "id": "6lwNb5CFYgo",
+      "name": "praveen",
+      "email": "trd@gmail.com",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "xKmLE3ik3xk",
+      "name": "ash",
+      "email": "ash@gmail.com",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "XarJRuyiJp4",
+      "name": "fyv",
+      "email": "gbnuf@gmail.com",
+      "password": "123",
+      "role": "admin"
+    },
+    {
+      "id": "HPbXvNTv4hE",
+      "name": "praveen",
+      "email": "praveen01@gmail.com",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "q5GA1QAmh3s",
+      "name": "praveen",
+      "email": "praveen87@gmail.com",
+      "password": "123",
+      "role": "admin"
+    },
+    {
+      "id": "CazxNLo3mvg",
+      "name": "dkjbw",
+      "email": "abc@gmail.com",
+      "password": "123",
+      "role": "admin"
+    },
+    {
+      "id": "RMy76ucKJ1o",
+      "name": "qfhg",
+      "email": "cd@gmail.com",
+      "password": "123",
+      "role": "user"
+    },
+    {
+      "id": "fAaOSo_l1_A",
+      "name": "praveen",
+      "email": "ac@gmail.com",
+      "password": "123",
+      "role": "user"
+    }
+  ],
+  "halls": [
+    {
+      "id": "1",
+      "name": "Grand Ballroom",
+      "price": 5000,
+      "pricePerHour": 5000,
+      "capacity": 500,
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1615460549969-36fa19521a4f?w=600&q=80",
+      "location": "Floor 1, Main Wing",
+      "description": "A stunning grand ballroom perfect for weddings, galas, and large corporate events."
+    },
+    {
+      "id": "2",
+      "name": "Royal Suite",
+      "price": 3000,
+      "pricePerHour": 3000,
+      "capacity": 200,
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=600&q=80",
+      "location": "Floor 3, East Wing",
+      "description": "An elegant suite with royal decor, ideal for intimate gatherings and board meetings."
+    },
+    {
+      "id": "3",
+      "name": "Crystal Palace",
+      "price": 4500,
+      "pricePerHour": 4500,
+      "capacity": 400,
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=600&q=80",
+      "location": "Floor 2, North Wing",
+      "description": "A breathtaking crystal-themed hall with panoramic views, suited for high-profile events."
+    },
+    {
+      "id": "4",
+      "name": "Emerald Garden",
+      "price": 3500,
+      "pricePerHour": 3500,
+      "capacity": 300,
+      "status": "Maintenance",
+      "image": "https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=600&q=80",
+      "location": "Ground Floor, South Wing",
+      "description": "A lush garden-themed hall with natural elements, perfect for themed celebrations."
+    },
+    {
+      "id": "5",
+      "name": "Sapphire Terrace",
+      "price": 4000,
+      "pricePerHour": 4000,
+      "capacity": 350,
+      "status": "Active",
+      "image": "https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?w=600&q=80",
+      "location": "Rooftop, Tower Block",
+      "description": "An open-air rooftop terrace with sapphire-blue accents, ideal for evening events and product launches."
+    }
+  ],
+  "bookings": [
+    {
+      "id": "BK-1001",
+      "userId": "2",
+      "hallId": null,
+      "date": "2026-05-20",
+      "time": "18:00",
+      "duration": 4,
+      "guests": 250,
+      "status": "confirmed",
+      "amount": 5000,
+      "createdAt": "2026-04-13T14:48:29.085Z"
+    },
+    {
+      "id": "BK-1002",
+      "userId": "2",
+      "hallId": "2",
+      "date": "2026-06-15",
+      "time": "10:00",
+      "duration": 5,
+      "guests": 100,
+      "status": "confirmed",
+      "amount": 3000,
+      "createdAt": "2026-04-13T14:53:14.787Z"
+    },
+    {
+      "id": "BK-1003",
+      "userId": "1",
+      "hallId": "3",
+      "date": "2026-04-30",
+      "time": "20:00",
+      "duration": 8,
+      "guests": 150,
+      "status": "confirmed",
+      "amount": 4500,
+      "createdAt": "2026-04-13T14:58:25.323Z"
+    },
+    {
+      "id": "rcvvB0eu5M8",
+      "userId": "1776149038038",
+      "hallId": "2",
+      "date": "2026-04-30",
+      "time": "12:17",
+      "duration": 4,
+      "guests": 50,
+      "status": "confirmed",
+      "amount": 200,
+      "createdAt": "2026-04-14T06:44:42.761Z"
+    },
+    {
+      "id": "BC4eOAvW-8o",
+      "userId": "1776149038038",
+      "hallId": "3",
+      "date": "2026-04-30",
+      "time": "12:26",
+      "duration": 24,
+      "guests": 50,
+      "status": "confirmed",
+      "amount": 1200,
+      "createdAt": "2026-04-14T06:52:27.626Z"
+    },
+    {
+      "id": "-2ZbjPFrjqY",
+      "userId": "xKmLE3ik3xk",
+      "hallId": null,
+      "date": "2026-04-30",
+      "time": "12:35",
+      "duration": 4,
+      "guests": 20,
+      "status": "confirmed",
+      "amount": 200,
+      "createdAt": "2026-04-14T07:03:13.831Z"
+    },
+    {
+      "id": "juMca_ha2Qo",
+      "userId": "HPbXvNTv4hE",
+      "hallId": null,
+      "date": "2026-04-30",
+      "time": "15:26",
+      "duration": 4,
+      "guests": 15,
+      "status": "confirmed",
+      "amount": 200,
+      "createdAt": "2026-04-15T04:56:37.850Z"
+    },
+    {
+      "id": "M7qWa3NOw5o",
+      "userId": "RMy76ucKJ1o",
+      "hallId": null,
+      "date": "2026-04-30",
+      "time": "13:05",
+      "duration": 4,
+      "guests": 50,
+      "status": "pending",
+      "amount": 200,
+      "createdAt": "2026-04-15T05:36:00.881Z"
+    },
+    {
+      "id": "bVXeQKIyvvA",
+      "userId": "fAaOSo_l1_A",
+      "hallId": "1",
+      "date": "2026-04-23",
+      "time": "20:27",
+      "duration": 4,
+      "guests": 50,
+      "status": "pending",
+      "amount": 200,
+      "createdAt": "2026-04-16T14:54:00.665Z"
+    },
+    {
+      "id": "PAtAF2MGaTM",
+      "userId": "2",
+      "hallId": "2",
+      "date": "2026-04-30",
+      "time": "11:29",
+      "duration": 24,
+      "guests": 50,
+      "status": "pending",
+      "amount": 1200,
+      "createdAt": "2026-04-17T05:58:43.391Z"
+    },
+    {
+      "id": "TBSgRcA0NzU",
+      "userId": "2",
+      "hallId": "2",
+      "date": "2026-04-30",
+      "time": "12:44",
+      "duration": 4,
+      "guests": 50,
+      "status": "pending",
+      "amount": 200,
+      "createdAt": "2026-04-17T05:59:06.846Z"
+    },
+    {
+      "id": "QWgdxy1l590",
+      "userId": "JT16FX-lMgQ",
+      "hallId": "1",
+      "date": "2026-04-30",
+      "time": "12:53",
+      "duration": 12,
+      "guests": 50,
+      "status": "pending",
+      "amount": 600,
+      "createdAt": "2026-04-17T07:22:44.651Z"
+    }
+  ],
+  "payments": [
+    {
+      "id": "PAY-001",
+      "bookingId": "BK-1001",
+      "amount": 5000,
+      "status": "completed",
+      "date": "2026-04-10",
+      "method": "Credit Card"
+    },
+    {
+      "id": "PAY-002",
+      "bookingId": "BK-1002",
+      "amount": 3000,
+      "status": "completed",
+      "date": "2026-04-12",
+      "method": "UPI"
+    },
+    {
+      "id": "PAY-003",
+      "bookingId": "BK-1003",
+      "amount": 4500,
+      "status": "refunded",
+      "date": "2026-04-13",
+      "method": "Net Banking"
+    },
+    {
+      "id": "PAY-004",
+      "bookingId": "rcvvB0eu5M8",
+      "amount": 200,
+      "status": "completed",
+      "date": "2026-04-14",
+      "method": "UPI"
+    },
+    {
+      "id": "PAY-005",
+      "bookingId": "BC4eOAvW-8o",
+      "amount": 1200,
+      "status": "pending",
+      "date": "2026-04-14",
+      "method": "Credit Card"
+    },
+    {
+      "id": "PAY-006",
+      "bookingId": "-2ZbjPFrjqY",
+      "amount": 200,
+      "status": "completed",
+      "date": "2026-04-14",
+      "method": "Debit Card"
+    },
+    {
+      "id": "PAY-007",
+      "bookingId": "juMca_ha2Qo",
+      "amount": 200,
+      "status": "pending",
+      "date": "2026-04-15",
+      "method": "UPI"
+    },
+    {
+      "id": "PAY-008",
+      "bookingId": "M7qWa3NOw5o",
+      "amount": 200,
+      "status": "failed",
+      "date": "2026-04-15",
+      "method": "Net Banking"
+    },
+    {
+      "id": "iLs3r5EvuDo",
+      "bookingId": "BK-8950",
+      "amount": 200,
+      "status": "completed",
+      "date": "2026-04-09",
+      "method": "UPI"
+    },
+    {
+      "id": "PAY-009",
+      "bookingId": "BK-1001",
+      "amount": 500,
+      "status": "refunded",
+      "date": "2026-04-11",
+      "method": "Credit Card"
+    },
+    {
+      "id": "1xg465CI2YI",
+      "bookingId": "bVXeQKIyvvA",
+      "amount": 200,
+      "status": "pending"
+    },
+    {
+      "id": "w7Tt94TKB8c",
+      "bookingId": "PAtAF2MGaTM",
+      "amount": 1200,
+      "status": "pending"
+    },
+    {
+      "id": "rxyMzKwy-uw",
+      "bookingId": "TBSgRcA0NzU",
+      "amount": 200,
+      "status": "pending"
+    },
+    {
+      "id": "H62bH1KMY9A",
+      "bookingId": "QWgdxy1l590",
+      "amount": 600,
+      "status": "pending"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

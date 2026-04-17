@@ -1,0 +1,162 @@
+
+> hall@0.1.0 lint
+> eslint
+
+
+C:\Users\Student\Downloads\Hall Booking System\hall\app\Admin\Halls\page.tsx
+   60:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Student\Downloads\Hall Booking System\hall\app\Admin\Halls\page.tsx:60:5
+  58 |
+  59 |   useEffect(() => {
+> 60 |     fetchHalls();
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  61 |   }, []);
+  62 |
+  63 |   useEffect(() => {                                                                           react-hooks/set-state-in-effect
+   64:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Student\Downloads\Hall Booking System\hall\app\Admin\Halls\page.tsx:64:5
+  62 |
+  63 |   useEffect(() => {
+> 64 |     setCurrentPage(1);
+     |     ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  65 |   }, [searchQuery, statusFilter, viewMode]);
+  66 |
+  67 |   const filteredHalls = halls.filter((hall) => {  react-hooks/set-state-in-effect
+  343:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @next/next/no-img-element
+  441:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @next/next/no-img-element
+  635:23  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @next/next/no-img-element
+
+C:\Users\Student\Downloads\Hall Booking System\hall\app\Admin\Users Management\page.tsx
+  49:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Student\Downloads\Hall Booking System\hall\app\Admin\Users Management\page.tsx:49:5
+  47 |
+  48 |   useEffect(() => {
+> 49 |     fetchUsers();
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  50 |   }, []);
+  51 |
+  52 |   // Reset page on filter changes                                                                                                    react-hooks/set-state-in-effect
+  54:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Student\Downloads\Hall Booking System\hall\app\Admin\Users Management\page.tsx:54:5
+  52 |   // Reset page on filter changes
+  53 |   useEffect(() => {
+> 54 |     setCurrentPage(1);
+     |     ^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  55 |   }, [searchQuery, roleFilter]);
+  56 |
+  57 |   // ─── Filtering ──────────────────────────────────────────────  react-hooks/set-state-in-effect
+
+C:\Users\Student\Downloads\Hall Booking System\hall\app\User\PaymentHistory\page.tsx
+  49:5  error  Error: Cannot access variable before it is declared
+
+`fetchData` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+C:\Users\Student\Downloads\Hall Booking System\hall\app\User\PaymentHistory\page.tsx:49:5
+  47 |     const userId = localStorage.getItem("userId");
+  48 |     if (!userId) { router.push("/Login"); return; }
+> 49 |     fetchData(userId);
+     |     ^^^^^^^^^ `fetchData` accessed before it is declared
+  50 |   }, [router]);
+  51 |
+  52 |   const fetchData = async (userId: string) => {
+
+C:\Users\Student\Downloads\Hall Booking System\hall\app\User\PaymentHistory\page.tsx:52:3
+  50 |   }, [router]);
+  51 |
+> 52 |   const fetchData = async (userId: string) => {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 53 |     try {
+     | ^^^^^^^^^
+> 54 |       const [bookRes, payRes] = await Promise.all([
+     …
+     | ^^^^^^^^^
+> 81 |     }
+     | ^^^^^^^^^
+> 82 |   };
+     | ^^^^^ `fetchData` is declared here
+  83 |
+  84 |   const getBooking = (bookingId: string) => bookings.find((b) => b.id === bookingId);
+  85 |  react-hooks/immutability
+
+C:\Users\Student\Downloads\Hall Booking System\hall\app\User\page.tsx
+   53:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+C:\Users\Student\Downloads\Hall Booking System\hall\app\User\page.tsx:53:5
+  51 |     if (!userId) { router.push("/Login"); return; }
+  52 |
+> 53 |     setUser({ id: userId, name: userName || "Guest", email: userEmail || "user@example.com" });
+     |     ^^^^^^^ Avoid calling setState() directly within an effect
+  54 |     fetchData(userId);
+  55 |   }, [router]);
+  56 |                                                                            react-hooks/set-state-in-effect
+   54:5   error    Error: Cannot access variable before it is declared
+
+`fetchData` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+C:\Users\Student\Downloads\Hall Booking System\hall\app\User\page.tsx:54:5
+  52 |
+  53 |     setUser({ id: userId, name: userName || "Guest", email: userEmail || "user@example.com" });
+> 54 |     fetchData(userId);
+     |     ^^^^^^^^^ `fetchData` accessed before it is declared
+  55 |   }, [router]);
+  56 |
+  57 |   const fetchData = async (userId: string) => {
+
+C:\Users\Student\Downloads\Hall Booking System\hall\app\User\page.tsx:57:3
+  55 |   }, [router]);
+  56 |
+> 57 |   const fetchData = async (userId: string) => {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 58 |     try {
+     | ^^^^^^^^^
+> 59 |       const res = await fetch(`http://127.0.0.1:5000/bookings?userId=${userId}`);
+     …
+     | ^^^^^^^^^
+> 87 |     }
+     | ^^^^^^^^^
+> 88 |   };
+     | ^^^^^ `fetchData` is declared here
+  89 |
+  90 |   const cancelBooking = async (id: string) => {
+  91 |     if (!confirm("Are you sure you want to cancel this booking?")) return;  react-hooks/immutability
+  237:25  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             @next/next/no-img-element
+
+C:\Users\Student\Downloads\Hall Booking System\hall\lib\actions.ts
+  48:23  warning  '_password' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+✖ 12 problems (7 errors, 5 warnings)
+
