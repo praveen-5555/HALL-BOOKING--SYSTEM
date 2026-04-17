@@ -1,31 +1,24 @@
-const JSON_SERVER_URL = process.env.JSON_SERVER_URL || "http://localhost:5000";
+import { readDb, writeDb } from "../../../lib/db";
 
-export async function GET() {
-  const res = await fetch(`${JSON_SERVER_URL}/bookings`);
-  if (!res.ok) {
-    return new Response("Failed to fetch bookings", { status: res.status });
+export async function GET(request: Request) {
+  const url = new URL(request.url);
+  const userId = url.searchParams.get("userId");
+  const db = await readDb();
+  const bookings = db.bookings || [];
+
+  if (userId) {
+    return Response.json(bookings.filter((booking: any) => booking.userId === userId));
   }
-  const data = await res.json();
-  return Response.json(data);
+
+  return Response.json(bookings);
 }
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const res = await fetch(`${JSON_SERVER_URL}/bookings`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      ...body,
-      createdAt: new Date().toISOString(),
-    }),
-  });
-
-  if (!res.ok) {
-    return new Response("Failed to create booking", { status: res.status });
-  }
-
-  const data = await res.json();
-  return Response.json(data);
+  const db = await readDb();
+  const bookings = db.bookings || [];
+  const newBooking = { id: String(Date.now()), ...body, createdAt: new Date().toISOString() };
+  db.bookings = [...bookings, newBooking];
+  await writeDb(db);
+  return Response.json(newBooking);
 }

@@ -22,7 +22,7 @@ function HomeContent() {
   useEffect(() => {
     const fetchHalls = async () => {
       try {
-        const res = await fetch("http://127.0.0.1:5000/halls");
+        const res = await fetch("/api/halls");
         const data = await res.json();
         setHalls(data);
       } catch (error) {

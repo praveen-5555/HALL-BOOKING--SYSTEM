@@ -1,28 +1,24 @@
-const JSON_SERVER_URL = process.env.JSON_SERVER_URL || "http://localhost:5000";
+import { readDb, writeDb } from "../../../lib/db";
 
-export async function GET() {
-  const res = await fetch(`${JSON_SERVER_URL}/users`);
-  if (!res.ok) {
-    return new Response("Failed to fetch users", { status: res.status });
+export async function GET(request: Request) {
+  const url = new URL(request.url);
+  const email = url.searchParams.get("email");
+  const db = await readDb();
+  const users = db.users || [];
+
+  if (email) {
+    return Response.json(users.filter((user: any) => user.email === email));
   }
-  const data = await res.json();
-  return Response.json(data);
+
+  return Response.json(users);
 }
 
 export async function POST(req: Request) {
   const body = await req.json();
-  const res = await fetch(`${JSON_SERVER_URL}/users`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(body),
-  });
-
-  if (!res.ok) {
-    return new Response("Failed to create user", { status: res.status });
-  }
-
-  const data = await res.json();
-  return Response.json(data);
+  const db = await readDb();
+  const users = db.users || [];
+  const newUser = { id: String(Date.now()), ...body };
+  db.users = [...users, newUser];
+  await writeDb(db);
+  return Response.json(newUser);
 }

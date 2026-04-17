@@ -1,10 +1,24 @@
-const JSON_SERVER_URL = process.env.JSON_SERVER_URL || "http://localhost:5000";
+import { readDb, writeDb } from "../../../lib/db";
 
-export async function GET() {
-  const res = await fetch(`${JSON_SERVER_URL}/payments`);
-  if (!res.ok) {
-    return new Response("Failed to fetch payments", { status: res.status });
+export async function GET(request: Request) {
+  const url = new URL(request.url);
+  const bookingId = url.searchParams.get("bookingId");
+  const db = await readDb();
+  const payments = db.payments || [];
+
+  if (bookingId) {
+    return Response.json(payments.filter((payment: any) => payment.bookingId === bookingId));
   }
-  const data = await res.json();
-  return Response.json(data);
+
+  return Response.json(payments);
+}
+
+export async function POST(req: Request) {
+  const body = await req.json();
+  const db = await readDb();
+  const payments = db.payments || [];
+  const newPayment = { id: String(Date.now()), ...body };
+  db.payments = [...payments, newPayment];
+  await writeDb(db);
+  return Response.json(newPayment);
 }

@@ -15,7 +15,7 @@ export async function registerUser(formData: FormData) {
 
   try {
     // Check if user already exists
-    const usersRes = await fetch(`http://127.0.0.1:5000/users?email=${encodeURIComponent(email)}`, { cache: 'no-store' });
+    const usersRes = await fetch(`/api/users?email=${encodeURIComponent(email)}`, { cache: 'no-store' });
     const users = await usersRes.json();
     
     if (users && users.length > 0) {
@@ -24,15 +24,14 @@ export async function registerUser(formData: FormData) {
 
     // Create new user
     const newUser = {
-      id: String(Date.now()), // Generate unique ID based on timestamp
       name,
       email,
       password, // In a real application, you should hash the password!
       role: role
     };
 
-    // Save using JSON Server
-    const createRes = await fetch("http://127.0.0.1:5000/users", {
+    // Save using Next.js API route
+    const createRes = await fetch("/api/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -62,7 +61,7 @@ export async function loginUser(formData: FormData) {
   }
 
   try {
-    const usersRes = await fetch(`http://127.0.0.1:5000/users?email=${encodeURIComponent(email)}`, { cache: 'no-store' });
+    const usersRes = await fetch(`/api/users?email=${encodeURIComponent(email)}`, { cache: 'no-store' });
     const users = await usersRes.json();
 
     if (!users || users.length === 0) {
