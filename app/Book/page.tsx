@@ -51,12 +51,12 @@ function BookForm() {
     };
 
     try {
-      const res = await fetch("http://127.0.0.1:5000/bookings", {
+      const res = await fetch("/api/bookings", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bookingData)
       });
-      
+
       if (res.ok) {
         const savedBooking = await res.json();
         const actualBookingId = savedBooking.id;
@@ -68,12 +68,12 @@ function BookForm() {
           amount: bookingData.amount,
           status: "pending"
         };
-        await fetch("http://127.0.0.1:5000/payments", {
+        await fetch("/api/payments", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(paymentData)
         });
-        
+
         setIsSuccess(true);
       }
     } catch {

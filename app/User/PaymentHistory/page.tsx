@@ -46,8 +46,8 @@ export default function PaymentHistory() {
   async function fetchData(userId: string) {
     try {
       const [bookRes, payRes] = await Promise.all([
-        fetch(`http://127.0.0.1:5000/bookings?userId=${userId}&_expand=hall`),
-        fetch(`http://127.0.0.1:5000/payments`),
+        fetch(`/api/bookings?userId=${userId}`),
+        fetch(`/api/payments`),
       ]);
       const [bookData, payData] = await Promise.all([bookRes.json(), payRes.json()]);
 
@@ -56,7 +56,7 @@ export default function PaymentHistory() {
         bookData.map(async (b: Booking) => {
           if (!b.hall && b.hallId) {
             try {
-              const h = await fetch(`http://127.0.0.1:5000/halls/${b.hallId}`);
+              const h = await fetch(`/api/halls/${b.hallId}`);
               return { ...b, hall: await h.json() };
             } catch { return b; }
           }

@@ -1,4 +1,5 @@
 import { readDb } from "../../../../lib/db";
+import { User } from "../../../../lib/types";
 
 export async function POST(req: Request) {
   try {
@@ -10,7 +11,7 @@ export async function POST(req: Request) {
 
     const db = await readDb();
     const users = db.users || [];
-    const user = users.find((user: any) => user.email === email);
+    const user = users.find((user: User) => user.email === email);
 
     if (!user) {
       return Response.json({ error: "Invalid email or password" }, { status: 401 });

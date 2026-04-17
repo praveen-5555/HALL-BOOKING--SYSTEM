@@ -45,7 +45,7 @@ export default function UserProfile() {
 
   async function fetchData(userId: string) {
     try {
-      const res = await fetch(`http://127.0.0.1:5000/bookings?userId=${userId}`);
+      const res = await fetch(`/api/bookings?userId=${userId}`);
       const bookData: Booking[] = await res.json();
 
       // Enrich with hall info
@@ -53,7 +53,7 @@ export default function UserProfile() {
         bookData.map(async (b) => {
           if (b.hallId) {
             try {
-              const hRes = await fetch(`http://127.0.0.1:5000/halls/${b.hallId}`);
+              const hRes = await fetch(`/api/halls/${b.hallId}`);
               if (hRes.ok) return { ...b, hall: await hRes.json() };
             } catch { /* ignore */ }
           }
@@ -64,7 +64,7 @@ export default function UserProfile() {
       setBookings(sorted);
 
       // Payments
-      const payRes = await fetch("http://127.0.0.1:5000/payments");
+      const payRes = await fetch("/api/payments");
       const allPayments: Payment[] = await payRes.json();
       const bookingIds = sorted.map((b) => b.id);
       const userPayments = allPayments.filter((p) => bookingIds.includes(p.bookingId)).reverse();
@@ -93,7 +93,7 @@ export default function UserProfile() {
   const cancelBooking = async (id: string) => {
     if (!confirm("Are you sure you want to cancel this booking?")) return;
     try {
-      const res = await fetch(`http://127.0.0.1:5000/bookings/${id}`, { method: "DELETE" });
+      const res = await fetch(`/api/bookings/${id}`, { method: "DELETE" });
       if (res.ok) setBookings(bookings.filter((b) => b.id !== id));
     } catch { alert("Failed to cancel booking."); }
   };

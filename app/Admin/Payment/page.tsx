@@ -35,11 +35,11 @@ export default function AdminPayment() {
     const fetchData = async () => {
       try {
         const [payRes, bookRes, userRes] = await Promise.all([
-          fetch("http://localhost:5000/payments"),
-          fetch("http://localhost:5000/bookings"),
-          fetch("http://localhost:5000/users")
+          fetch("/api/payments"),
+          fetch("/api/bookings"),
+          fetch("/api/users")
         ]);
-        
+
         const [payData, bookData, userData] = await Promise.all([
           payRes.json(),
           bookRes.json(),
@@ -77,7 +77,7 @@ export default function AdminPayment() {
   const handleRefund = async (paymentId: string) => {
     if (!window.confirm("Are you sure you want to process a refund for this transaction?")) return;
     try {
-      const res = await fetch(`http://localhost:5000/payments/${paymentId}`, {
+      const res = await fetch(`/api/payments/${paymentId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: "refunded" })

@@ -46,7 +46,7 @@ export default function AdminHalls() {
   const fetchHalls = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://127.0.0.1:5000/halls");
+      const res = await fetch("/api/halls");
       const data = await res.json();
       setHalls(data);
     } catch (error) {
@@ -96,7 +96,7 @@ export default function AdminHalls() {
 
   const handleDelete = async (id: string) => {
     try {
-      const res = await fetch(`http://127.0.0.1:5000/halls/${id}`, {
+      const res = await fetch(`/api/halls/${id}`, {
         method: "DELETE",
       });
       if (res.ok) {
@@ -176,7 +176,7 @@ export default function AdminHalls() {
     try {
       if (editingHall) {
         const res = await fetch(
-          `http://127.0.0.1:5000/halls/${editingHall.id}`,
+          `/api/halls/${editingHall.id}`,
           {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
@@ -191,10 +191,10 @@ export default function AdminHalls() {
           setModalError("Failed to update hall. Please try again.");
         }
       } else {
-        const res = await fetch("http://127.0.0.1:5000/halls", {
+        const res = await fetch("/api/halls", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...hallData, id: Date.now().toString() }),
+          body: JSON.stringify(hallData),
         });
         if (res.ok) {
           const data = await res.json();

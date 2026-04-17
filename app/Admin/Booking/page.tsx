@@ -38,9 +38,9 @@ export default function AdminBooking() {
   const fetchData = async () => {
     try {
       const [bookRes, userRes, hallRes] = await Promise.all([
-        fetch("http://127.0.0.1:5000/bookings"),
-        fetch("http://127.0.0.1:5000/users"),
-        fetch("http://127.0.0.1:5000/halls")
+        fetch("/api/bookings"),
+        fetch("/api/users"),
+        fetch("/api/halls")
       ]);
       const [bookData, userData, hallData] = await Promise.all([
         bookRes.json(),
@@ -72,7 +72,7 @@ export default function AdminBooking() {
 
   const handleUpdateStatus = async (id: string, newStatus: string) => {
     try {
-      const res = await fetch(`http://127.0.0.1:5000/bookings/${id}`, {
+      const res = await fetch(`/api/bookings/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus })

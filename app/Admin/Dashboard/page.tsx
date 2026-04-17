@@ -51,10 +51,10 @@ export default function AdminDashboard() {
     const fetchDashboardData = async () => {
       try {
         const [hallsRes, bookRes, userRes, payRes] = await Promise.all([
-          fetch("http://127.0.0.1:5000/halls"),
-          fetch("http://127.0.0.1:5000/bookings"),
-          fetch("http://127.0.0.1:5000/users"),
-          fetch("http://127.0.0.1:5000/payments")
+          fetch("/api/halls"),
+          fetch("/api/bookings"),
+          fetch("/api/users"),
+          fetch("/api/payments")
         ]);
 
         const halls: Hall[] = await hallsRes.json();

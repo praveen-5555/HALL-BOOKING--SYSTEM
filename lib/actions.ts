@@ -1,6 +1,7 @@
 "use server";
 
 import { readDb, writeDb } from "./db";
+import { User } from "./types";
 
 // A server action to append a new user to db.json
 export async function registerUser(formData: FormData) {
@@ -17,17 +18,17 @@ export async function registerUser(formData: FormData) {
     const db = await readDb();
     const users = db.users || [];
 
-    const existingUser = users.find((user: any) => user.email === email);
+    const existingUser = users.find((user: User) => user.email === email);
     if (existingUser) {
       return { error: "User already exists with this email" };
     }
 
-    const newUser = {
+    const newUser: User = {
       id: String(Date.now()),
       name,
       email,
       password, // In a real application, you should hash the password!
-      role: role,
+      role: role as 'admin' | 'user',
     };
 
     db.users = [...users, newUser];
@@ -52,7 +53,7 @@ export async function loginUser(formData: FormData) {
   try {
     const db = await readDb();
     const users = db.users || [];
-    const filteredUsers = users.filter((user: any) => user.email === email);
+    const filteredUsers = users.filter((user: User) => user.email === email);
 
     if (!filteredUsers || filteredUsers.length === 0) {
       return { error: "Invalid email or password" };

@@ -35,7 +35,7 @@ export default function AdminUsersManagement() {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://127.0.0.1:5000/users");
+      const res = await fetch("/api/users");
       const data = await res.json();
       setUsers(data);
     } catch (error) {
@@ -120,7 +120,7 @@ export default function AdminUsersManagement() {
     try {
       if (editingUser) {
         const res = await fetch(
-          `http://127.0.0.1:5000/users/${editingUser.id}`,
+          `/api/users/${editingUser.id}`,
           {
             method: "PATCH",
             headers: { "Content-Type": "application/json" },
@@ -135,7 +135,7 @@ export default function AdminUsersManagement() {
           setFormError("Failed to update user.");
         }
       } else {
-        const res = await fetch("http://127.0.0.1:5000/users", {
+        const res = await fetch("/api/users", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ ...payload, password: "123" }),
@@ -157,7 +157,7 @@ export default function AdminUsersManagement() {
 
   const handleDelete = async (id: string) => {
     try {
-      await fetch(`http://127.0.0.1:5000/users/${id}`, { method: "DELETE" });
+      await fetch(`/api/users/${id}`, { method: "DELETE" });
       setUsers(users.filter((u) => u.id !== id));
       setDeleteConfirmId(null);
     } catch (error) {
@@ -168,7 +168,7 @@ export default function AdminUsersManagement() {
   const toggleRole = async (u: User) => {
     const newRole = u.role === "admin" ? "user" : "admin";
     try {
-      const res = await fetch(`http://127.0.0.1:5000/users/${u.id}`, {
+      const res = await fetch(`/api/users/${u.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ role: newRole }),
