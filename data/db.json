@@ -54,7 +54,7 @@
       "name": "praveen",
       "email": "praveen1234@gmail.com",
       "password": "123",
-      "role": "admin"
+      "role": "user"
     },
     {
       "id": "6lwNb5CFYgo",
@@ -75,7 +75,7 @@
       "name": "fyv",
       "email": "gbnuf@gmail.com",
       "password": "123",
-      "role": "admin"
+      "role": "user"
     },
     {
       "id": "HPbXvNTv4hE",
@@ -89,14 +89,14 @@
       "name": "praveen",
       "email": "praveen87@gmail.com",
       "password": "123",
-      "role": "admin"
+      "role": "user"
     },
     {
       "id": "CazxNLo3mvg",
       "name": "dkjbw",
       "email": "abc@gmail.com",
       "password": "123",
-      "role": "admin"
+      "role": "user"
     },
     {
       "id": "RMy76ucKJ1o",
@@ -174,7 +174,7 @@
     {
       "id": "BK-1001",
       "userId": "2",
-      "hallId": null,
+      "hallId": "1",
       "date": "2026-05-20",
       "time": "18:00",
       "duration": 4,
@@ -234,7 +234,7 @@
     {
       "id": "-2ZbjPFrjqY",
       "userId": "xKmLE3ik3xk",
-      "hallId": null,
+      "hallId": "1",
       "date": "2026-04-30",
       "time": "12:35",
       "duration": 4,
@@ -246,7 +246,7 @@
     {
       "id": "juMca_ha2Qo",
       "userId": "HPbXvNTv4hE",
-      "hallId": null,
+      "hallId": "1",
       "date": "2026-04-30",
       "time": "15:26",
       "duration": 4,
@@ -258,7 +258,7 @@
     {
       "id": "M7qWa3NOw5o",
       "userId": "RMy76ucKJ1o",
-      "hallId": null,
+      "hallId": "1",
       "date": "2026-04-30",
       "time": "13:05",
       "duration": 4,
